@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сайт с картинками и фоном</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('https://umbphotos.ag/images/d010af2be0b1c0f9413429a3aaee5acd.jpg'); /* Укажите ссылку на фон */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+        .images-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .images-container img {
+            width: 200px; /* Задайте желаемый размер изображения */
+            margin: 10px;
+            cursor: pointer;
+            border: 5px solid #00FF00;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .images-container img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+             
+        }
+        .back-arrow {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: green;
+            padding: 10px 15px;
+            font-size: 18px;
+            text-decoration: none;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 9999; /* Чтобы она была поверх контента */
+            display: none; /* Скрыто по умолчанию */
+        }
+        .back-arrow:hover {
+            background-color: rgba(0, 0, 0, 0.9);
+            
+        }
+    </style>
+</head>
+<body>
+    <h1 style="color:#00FF00;">SYMBIOS SHOP</h1>
+    <div class="images-container">
+        <a href="#" onclick="openPage('https://boss10211.github.io/SLOT-SS/');">
+            <img src="https://umbphotos.ag/images/1c65319fb1d73032980ec97795d5ba9a.png" alt="Картинка 1">
+        </a>
+        <a href="#" onclick="openPage('https://boss10211.github.io/RoLL-SS/roullete%20ss.html');">
+            <img src="https://i.postimg.cc/BbznxHGF/IMG-0021.png" alt="Картинка 2">
+        </a>
+        <a href="#" onclick="openPage('https://boss10211.github.io/BOX-SS/');">
+            <img src="https://umbphotos.ag/images/1e87334bfa6f79e2335e76432fb71544.png" alt="Картинка 3">
+        </a>
+    </div>
+    <a class="back-arrow" id="back-arrow" onclick="goBack()">⏪Назад</a>
+
+    <script>
+        function openPage(url) {
+            // Скрываем основной контент
+            document.querySelector('.images-container').style.display = 'none';
+            document.querySelector('h1').style.display = 'none';
+
+            // Показываем стрелку "Назад"
+            const backArrow = document.getElementById('back-arrow');
+            backArrow.style.display = 'block';
+
+            // Загружаем новый сайт
+            const iframe = document.createElement('iframe');
+            iframe.src = url;
+            iframe.style.width = '100%';
+            iframe.style.height = '100vh';
+            iframe.style.border = 'none';
+            iframe.style.position = 'absolute';
+            iframe.style.top = '0';
+            iframe.style.left = '0';
+            iframe.style.zIndex = '1'; // Задний план для iframe
+            document.body.appendChild(iframe);
+        }
+
+        function goBack() {
+            // Показываем основной контент
+            document.querySelector('.images-container').style.display = 'flex';
+            document.querySelector('h1').style.display = 'block';
+
+            // Скрываем стрелку "Назад"
+            const backArrow = document.getElementById('back-arrow');
+            backArrow.style.display = 'none';
+
+            // Удаляем iframe
+            const iframe = document.querySelector('iframe');
+            if (iframe) {
+                iframe.remove();
+            }
+        }
+    </script>
+</body>
+</html>
